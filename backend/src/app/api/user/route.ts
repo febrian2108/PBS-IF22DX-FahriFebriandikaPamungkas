@@ -71,7 +71,7 @@ export const POST = async (request: NextRequest) => {
     }
 
     //enkripsi password
-    const salt = genSaltSync(5);
+    const salt = genSaltSync(10);
     const encrypt = hashSync(password_value, salt);
 
     //simpan data ke database

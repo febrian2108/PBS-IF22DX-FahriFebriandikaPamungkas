@@ -1,6 +1,4 @@
-import { metadata } from "@/app/layout";
 import { PrismaClient } from "@prisma/client";
-import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 import { genSaltSync, hashSync } from "bcrypt-ts";
 

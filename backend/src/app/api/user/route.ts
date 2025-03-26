@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { genSaltSync, hashSync } from "bcrypt-ts";
-import { getResponseUserNotFound } from "../general";
+import { getResponseUserNotFound, hashPassword } from "../general";
 
 // buat variabel prisma
 const prisma = new PrismaClient();
@@ -58,16 +58,12 @@ export const POST = async (request: NextRequest) => {
         );
     }
 
-    //enkripsi password
-    const salt = genSaltSync(10);
-    const encrypt = hashSync(password_value, salt);
-
     //simpan data ke database
     const save = await prisma.user.create({
         data: {
             nama: nama_value,
             username: username_value,
-            password: encrypt,
+            password: hashPassword(password_value),
         },
     });
 

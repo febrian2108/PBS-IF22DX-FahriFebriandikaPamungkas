@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { genSaltSync, hashSync } from "bcrypt-ts";
-import {prisma1} from "../../general";
+import {hashPassword, prisma1} from "../../general";
 
 // Inisialisasi Prisma Client
 const prisma = new PrismaClient();
@@ -69,17 +68,13 @@ export const PUT = async (request: NextRequest, { params }: { params: { id: stri
         );
     }
 
-    // Enkripsi password jika ada perubahan
-    const salt = genSaltSync(10);
-    const result = password_value ? hashSync(password_value, salt) : cek.password;
-
     // Update data user
     const update = await prisma.user.update({
         where: { id: Number(params.id) },
         data: {
             nama: nama_value,
             username: username_value,
-            password: result,
+            password: hashPassword(password_value),
         },
     });
 

@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { genSaltSync, hashSync } from "bcrypt-ts";
+import {prisma1} from "../../general";
 
 // Inisialisasi Prisma Client
 const prisma = new PrismaClient();

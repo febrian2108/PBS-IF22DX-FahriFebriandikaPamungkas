@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { genSaltSync, hashSync } from "bcrypt-ts";
+import { getResponseUserNotFound } from "../general";
 
 // buat variabel prisma
 const prisma = new PrismaClient();
@@ -11,20 +12,7 @@ export const GET = async () => {
     const view = await prisma.user.findMany({});
     // jika data user tidak ditemukan
     if (view.length == 0) {
-        return NextResponse.json(
-            {
-                metaData: {
-                    error: true,
-                    message: process.env.USER_NOT_FOUND_MESSAGE,
-                    list: "Data User",
-                    status: 404,
-                },
-                data_user: view,
-            },
-            {
-                status: 404,
-            }
-        );
+        return getResponseUserNotFound;
     }
     // proses atau respon api
     return NextResponse.json({

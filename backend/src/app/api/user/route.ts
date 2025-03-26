@@ -15,7 +15,7 @@ export const GET = async () => {
             {
                 metaData: {
                     error: true,
-                    message: "Data user tidak ditemukan",
+                    message: process.env.USER_NOT_FOUND_MESSAGE,
                     list: "Data User",
                     status: 404,
                 },

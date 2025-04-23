@@ -23,25 +23,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-    <html lang="en" data-theme="emerald">
-    <body>
-      {/* area header */}
-      <header>
-        <img width={400} height={60} src={"/images/logo-tekno.png"} alt="logo-tekno"  />
-      </header>
+    <>
+      <html lang="en">
+        <head>
+          {/* Add head meta tags, styles, or fonts here */}
+        </head>
+        <body>
+          {/* area header */}
+          <header>
+            <img
+              width={400}
+              height={60}
+              src={"/images/logo-tekno.png"}
+              alt="logo-tekno"
+            />
+          </header>
 
-      {/* area content */}
-      <section className="m-10">
-        {children}
-      </section>
+          {/* area content */}
+          <section className="m-10">{children}</section>
 
-      {/* area footer */}
-      <footer className="text-center">
-        Copyright &copy; 2025 - IF 22 DX
-      </footer>
-    </body>
-    </html>
-  </div>
+          {/* area footer */}
+          <footer className="text-center">
+            Copyright &copy; 2025 - IF 22 DX
+          </footer>
+        </body>
+      </html>
+    </>
   );
 }

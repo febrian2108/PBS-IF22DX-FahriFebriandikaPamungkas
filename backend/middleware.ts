@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
 
   // Menambahkan header CORS
   response.headers.set('Access-Control-Allow-Origin', '*'); // Memungkinkan akses dari semua origin
-  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Metode yang diizinkan
+  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, DELETE, PUT'); // Metode yang diizinkan
   response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Header yang diizinkan
 
   // Menangani permintaan OPTIONS (preflight request)

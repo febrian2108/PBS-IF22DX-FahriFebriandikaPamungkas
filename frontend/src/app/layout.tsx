@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <html lang="en">
+      <html>
         <head>
           {/* Add head meta tags, styles, or fonts here */}
         </head>

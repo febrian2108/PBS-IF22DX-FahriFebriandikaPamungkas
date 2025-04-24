@@ -10,24 +10,38 @@ const prisma = new PrismaClient();
 export const GET = async () => {
     // menampilkan data dari user
     const view = await prisma.user.findMany({});
+
     // jika data user tidak ditemukan
     if (view.length == 0) {
-        return getResponseUserNotFound;
-    }
-    // proses atau respon api
-    return NextResponse.json({
-            metaData: {
-                error: false,
-                message: "Data user berhasil ditampilkan",
-                list: "Data User",
+        // return getResponseUserNotFound;
+        NextResponse.json(
+            {
+                metaData: {
+                    error: true,
+                    message: process.env.USER_NOT_FOUND_MESSAGE,
+                    list: "Data User",
+                    status: 404,
+                },
             },
-            data_user: view,
-        },
-        {
-            status: 200,
-        }
-    );
-};
+            {
+                status: 404,
+            }
+        );
+    }
+        // proses atau respon api
+        return NextResponse.json({
+                metaData: {
+                    error: false,
+                    message: "Data user berhasil ditampilkan",
+                    list: "Data User",
+                },
+                data_user: view,
+            },
+            {
+                status: 200,
+            }
+        );
+    }
 
 //buat fungsi service "Post" (tb_user)
 export const POST = async (request: NextRequest) => {

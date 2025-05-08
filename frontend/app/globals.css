@@ -1,8 +1,10 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, cyberpunk;
+};
 
 :root {
-  font-size: 16px;
+  font-size: 1em;
 }
 
 /* @theme inline {
